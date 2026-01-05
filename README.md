@@ -28,4 +28,4 @@ You need to have Python installed.
 
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+[MIT license](https://choosealicense.com/licenses/mit/)
