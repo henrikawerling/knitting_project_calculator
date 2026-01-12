@@ -6,13 +6,12 @@ The Knitting Project Calculator is a command-line Python program that helps user
 
 ## Features
 
-- Add a new knitting project
-- Calculate:
-    - Total yarn used (in grams)
-    - Total cost of yarn
+- Add a knitting project
+- Calculate total yarn used and total cost of yarn
+- List all projects and calculate total yarn and cost of all (not yet implemented)
 - Menu-based navigation
-- Input validation with clear error messages
-- Option to return to the main menu at any time by pressing Enter
+- Input validation with error messages
+- Return to the main menu at any time by pressing Enter
 
 ## File structure
 
@@ -27,7 +26,7 @@ knitting_project_calculator/
 └── .gitignore
 ```
 
-## How to run
+## How to run & Usage
 
 - To get a local copy of the project:
 
@@ -42,19 +41,9 @@ knitting_project_calculator/
     - Windows: ```python main.py```
     - macOS / Linux: ```python3 main.py```
 
-## Usage
-
-- Select an option from the main menu by entering ```1``` or ```2```.
+- Select an option from the main menu.
 - Follow the prompts to enter project details.
-- Press Enter without typing anything at any prompt to return to the main menu or exit the program.
-
-## Future improvements
-
-- Store projects in a data structure or file so they persist between program runs
-- Implement the “List all projects” feature
-- Display summary statistics (total yarn used and total cost across all projects)
-- Reduce repeated input-validation logic by introducing reusable helper functions
-- Add automated tests for validation and calculation functions
+- Hit enter (without typing anything) at any prompt to return to the main menu and/or exit the program.
 
 ## License
 
