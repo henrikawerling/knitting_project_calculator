@@ -29,18 +29,18 @@ knitting_project_calculator/
 
 ## How to run
 
-To get a local copy of the project:
+- To get a local copy of the project:
 
-```bash
-git clone https://github.com/henrikawerling/knitting_project_calculator.git
-cd knitting_project_calculator/src
-```
+    ```bash
+    git clone https://github.com/henrikawerling/knitting_project_calculator.git
+    cd knitting_project_calculator/src
+    ```
 
-Make sure Python 3 is installed.
+- Make sure Python 3 is installed.
 
-Run the program:
-- Windows: ```python main.py```
-- macOS / Linux: ```python3 main.py```
+- Run the program:
+    - Windows: ```python main.py```
+    - macOS / Linux: ```python3 main.py```
 
 ## Usage
 
