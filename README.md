@@ -45,7 +45,7 @@ knitting_project_calculator/
 - Follow the prompts to enter project details.
 - Hit enter (without typing anything) at any prompt to return to the main menu and/or exit the program.
 
-### Exaple input and output:
+### Example input and output:
 
 ![screenshot from terminal with entered inputs and the resulting output](<examples/usage_example.png>)
 
