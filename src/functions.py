@@ -26,7 +26,7 @@ spent on your knitting projects.
 
 
 def print_farewell_msg():
-    print("Goodbye!")
+    print("Bye, see you next time!")
     print()
 
 
