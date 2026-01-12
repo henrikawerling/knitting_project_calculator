@@ -157,6 +157,6 @@ def show_result(project_name, total_yarn_amount, yarn_name, total_yarn_price):
     print()
     print(
         f"For {project_name} you used {total_yarn_amount} grams of "
-        f"{yarn_name} yarn and it cost you {total_yarn_price:.2f} euros."
+        f"{yarn_name} and it cost you {total_yarn_price:.2f} euros."
     )
     print()
