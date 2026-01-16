@@ -4,26 +4,30 @@ This module controls program flow, menu navigation, and user interaction.
 """
 
 import sys
-from functions import *  # (PEP 8 violation -> import functions -> functions.function_to_call())
+from functions import *
 
 def main():
     """Run the main program loop."""
     print_welcome_msg()
 
+    projects = []
+    total_yarn_amount = 0
+    total_yarn_price = 0
+
     while True:
         print_main_menu()
-        selection_raw = get_user_input()  # (-> variable name: main_menu_selection?)
+        main_menu_selection = get_user_input()
 
-        if is_empty(selection_raw):
+        if is_empty(main_menu_selection):
             sys.exit(print_farewell_msg())
 
-        selection = is_valid_selection(selection_raw)
-        if not selection:
+        main_menu_selection = is_valid_main_menu_selection(main_menu_selection)
+        if not main_menu_selection:
             print_invalid_input_msg()
             continue
-        
+
         # Add new project workflow
-        if selection == "add new project":
+        if main_menu_selection == "add new project":
             project_name = get_project_name()
             if is_empty(project_name):
                 continue
@@ -33,52 +37,62 @@ def main():
                 continue
             
             while True:
-                skein_weight_raw = get_skein_weight()
-                if is_empty(skein_weight_raw):
-                    skein_weight = None
+                grams_per_skein = get_grams_per_skein()
+                if is_empty(grams_per_skein):
+                    grams_per_skein = None
                     break
 
-                skein_weight = is_valid_int(skein_weight_raw)
-                if skein_weight:
+                grams_per_skein = is_valid_int(grams_per_skein)
+                if grams_per_skein:
                     break
 
-            if not skein_weight:  # (fix this with a new function?)
+            if not grams_per_skein:  # (fix this with a new function?)
                 continue
             
             while True:
-                skein_price_raw = get_skein_price()
-                if is_empty(skein_price_raw):
-                    skein_price = None
+                price_per_skein = get_price_per_skein()
+                if is_empty(price_per_skein):
+                    price_per_skein = None
                     break
 
-                skein_price = is_valid_float(skein_price_raw)
-                if skein_price:
+                price_per_skein = is_valid_float(price_per_skein)
+                if price_per_skein:
                     break
 
-            if not skein_price:  # (fix this with a new function?)
+            if not price_per_skein:  # (fix this with a new function?)
                 continue
 
             while True:
-                skein_amount_raw = get_skein_amount()
-                if is_empty(skein_amount_raw):
-                    skein_price = None
+                number_of_skeins = get_number_of_skeins()
+                if is_empty(number_of_skeins):
+                    price_per_skein = None
                     break
 
-                skein_amount = is_valid_int(skein_amount_raw)
-                if skein_amount:
+                number_of_skeins = is_valid_int(number_of_skeins)
+                if number_of_skeins:
                     break
 
-            if not skein_price:  # (fix this with a new function?)
+            if not price_per_skein:  # (fix this with a new function?)
                 continue
+            
+            projects.append(project_name)
 
-            total_yarn_amount = calculate_total_yarn_amount(skein_weight, skein_amount)
+            project_yarn_amount = calculate_project_yarn_amount(grams_per_skein, number_of_skeins)
 
-            total_yarn_price = calculate_total_yarn_price(skein_price, skein_amount)
+            project_yarn_price = calculate_project_yarn_price(price_per_skein, number_of_skeins)
 
-            show_result(project_name, total_yarn_amount, yarn_name, total_yarn_price)
+            total_yarn_amount += project_yarn_amount
 
-        # List all projects (not yet implemented)
-        elif selection == "list all projects":
-            print_not_available_msg()
+            total_yarn_price += project_yarn_price
+
+            show_result(project_name, project_yarn_amount, yarn_name, project_yarn_price)
+
+        # List all projects workflow
+        elif main_menu_selection == "list all projects":
+            show_list_of_projects(projects)
+            print()
+            show_number_of_projects(projects)
+            show_total_yarn_usage(total_yarn_amount)
+            show_total_yarn_price(total_yarn_price)
 
 main()

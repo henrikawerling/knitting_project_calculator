@@ -91,7 +91,7 @@ def is_valid_float(user_input):
         return None
 
 
-# Main-menu functions
+# Main menu functions
 
 def print_main_menu():
     print("""
@@ -107,17 +107,17 @@ def get_user_input():
     return input("")
 
 
-def is_valid_selection(selection):
+def is_valid_main_menu_selection(main_menu_selection):
     """Convert a valid menu selection into a readable command."""
-    if selection not in ["1", "2"]:
+    if main_menu_selection not in ["1", "2"]:
         return None
-    if selection == "1":
+    if main_menu_selection == "1":
         return "add new project"
-    elif selection == "2":
+    elif main_menu_selection == "2":
         return "list all projects"
 
 
-# Add-new-project input and calculation functions
+# Add new project input and calculation functions
 
 def get_project_name():
     print()
@@ -129,34 +129,56 @@ def get_yarn_name():
     return input("Yarn name: ")
 
 
-def get_skein_weight():
+def get_grams_per_skein():
     print()
-    return input("Skein weight (grams): ")
+    return input("Grams per skein: ")
 
 
-def get_skein_amount():
+def get_number_of_skeins():
     print()
-    return input("Skeins used: ")
+    return input("Number of skeins used: ")
 
 
-def get_skein_price():
+def get_price_per_skein():
     print()
-    return input("Skein price: ")
+    return input("Price per skein: ")
 
 
-def calculate_total_yarn_amount(skein_weight, skein_amount):
+def calculate_project_yarn_amount(skein_weight, skein_amount):
     return skein_weight * skein_amount
 
 
-def calculate_total_yarn_price(skein_price, skein_amount):
+def calculate_project_yarn_price(skein_price, skein_amount):
     return skein_price * skein_amount
 
 
-def show_result(project_name, total_yarn_amount, yarn_name, total_yarn_price):
+def show_result(project_name, project_yarn_amount, yarn_name, project_yarn_price):
     """Display a summary of the project including yarn usage and cost."""
     print()
     print(
-        f"For {project_name} you used {total_yarn_amount} grams of "
-        f"{yarn_name} and it cost you {total_yarn_price:.2f} euros."
+        f"For {project_name} you used {project_yarn_amount} grams of "
+        f"{yarn_name} and it cost you {project_yarn_price:.2f} euros."
     )
     print()
+
+
+# List all projects functions
+
+def show_list_of_projects(projects):
+    print()
+    print("Here's a list of all your projects:")
+    print()
+    for project in projects:
+        print(project)
+
+
+def show_number_of_projects(projects):
+    print(f"You have a total of {len(projects)} knitting projects.")
+
+
+def show_total_yarn_usage(total_yarn_amount):
+    print(f"In total you have used {total_yarn_amount} grams of yarn for your projects.")
+
+
+def show_total_yarn_price(total_yarn_price):
+    print(f"The total cost of your projects is {total_yarn_price:.2f} euros.")
