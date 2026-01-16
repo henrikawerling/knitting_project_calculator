@@ -25,19 +25,14 @@ spent on your knitting projects.
 """)
 
 
-def print_farewell_msg():
-    print("Bye, see you next time!")
+def print_not_available_msg():
     print()
+    print("Sorry, this feature is not available yet!")
 
 
 def print_invalid_input_msg():
     print()
     print("Invalid input, please try again!")
-
-
-def print_not_available_msg():
-    print()
-    print("Sorry, this feature is not available yet!")
 
 
 def print_not_integer_error_msg():
@@ -49,23 +44,19 @@ def print_not_integer_error_msg():
 
 def is_empty(user_input):
     """Check if the input is empty or contains only whitespace."""
-    if not user_input.strip():
-        return True
-    return False
+    return not user_input.strip()
 
 
 def is_valid_int(user_input):
     """Validate that the input is a non-negative integer.
-
     Returns the integer value if valid, otherwise None.
     """
     try:
         user_input = int(user_input)
         if user_input < 0:
-            print_invalid_input_msg()  # move printing of messages to main?
+            print_invalid_input_msg()
             return None
-        else:
-            return user_input
+        return user_input
     except ValueError:
         if "," in user_input or "." in user_input:
             print_not_integer_error_msg()
@@ -76,19 +67,30 @@ def is_valid_int(user_input):
 
 def is_valid_float(user_input):
     """Validate that the input is a non-negative floating-point number.
-
     Returns the float value if valid, otherwise None.
     """
     try:
         user_input = float(user_input)
         if user_input < 0:
-            print_invalid_input_msg()  # move printing of messages to main?
+            print_invalid_input_msg()
             return None
-        else:
-            return user_input
+        return user_input
     except ValueError:
         print_invalid_input_msg()
         return None
+    
+
+def get_validated_input(prompt, validation_function):
+    """Prompt the user until valid input is given.
+    Returns None if the user enters empty input.
+    """
+    while True:
+        user_input = input(prompt)
+        if is_empty(user_input):
+            return None
+        value = validation_function(user_input)
+        if value is not None:
+            return value
 
 
 # Main menu functions
@@ -103,56 +105,25 @@ Main menu (hit enter to quit)
 """)
 
 
-def get_user_input():
-    return input("")
-
-
 def is_valid_main_menu_selection(main_menu_selection):
-    """Convert a valid menu selection into a readable command."""
-    if main_menu_selection not in ["1", "2"]:
-        return None
-    if main_menu_selection == "1":
-        return "add new project"
-    elif main_menu_selection == "2":
-        return "list all projects"
+    valid_main_menu_selections = ["1", "2"]
+    return main_menu_selection in valid_main_menu_selections
 
 
-# Add new project input and calculation functions
+# Add new project functions
 
-def get_project_name():
-    print()
-    return input("Project name: ")
-
-
-def get_yarn_name():
-    print()
-    return input("Yarn name: ")
+def calculate_project_yarn_amount(grams_per_skein, number_of_skeins):
+    return grams_per_skein * number_of_skeins
 
 
-def get_grams_per_skein():
-    print()
-    return input("Grams per skein: ")
+def calculate_project_yarn_price(price_per_skein, number_of_skeins):
+    return price_per_skein * number_of_skeins
 
 
-def get_number_of_skeins():
-    print()
-    return input("Number of skeins used: ")
-
-
-def get_price_per_skein():
-    print()
-    return input("Price per skein: ")
-
-
-def calculate_project_yarn_amount(skein_weight, skein_amount):
-    return skein_weight * skein_amount
-
-
-def calculate_project_yarn_price(skein_price, skein_amount):
-    return skein_price * skein_amount
-
-
-def show_result(project_name, project_yarn_amount, yarn_name, project_yarn_price):
+def show_result(
+        project_name, project_yarn_amount, yarn_name, 
+        project_yarn_price
+    ):
     """Display a summary of the project including yarn usage and cost."""
     print()
     print(
@@ -166,14 +137,14 @@ def show_result(project_name, project_yarn_amount, yarn_name, project_yarn_price
 
 def show_list_of_projects(projects):
     print()
-    print("Here's a list of all your projects:")
+    print("Here's a list of your projects:")
     print()
     for project in projects:
         print(project)
 
 
 def show_number_of_projects(projects):
-    print(f"You have a total of {len(projects)} knitting projects.")
+    print(f"You have knitted {len(projects)} projects.")
 
 
 def show_total_yarn_usage(total_yarn_amount):
