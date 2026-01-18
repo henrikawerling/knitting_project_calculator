@@ -6,9 +6,8 @@ The Knitting Project Calculator is a command-line Python program that helps user
 
 ## Features
 
-- Add a knitting project
-- Calculate total yarn used and total cost of yarn
-- List all projects and calculate total yarn and cost of all (not yet implemented)
+- Add a knitting project and calculate the yarn usage and cost for it
+- List all projects and calculate total yarn and cost of all
 - Menu-based navigation
 - Input validation with error messages
 - Return to the main menu at any time by pressing Enter
